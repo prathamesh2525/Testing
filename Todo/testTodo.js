@@ -24,7 +24,11 @@ describe("todo", function () {
 
   it("Get the length of Todos", async function () {
     const getLength = await data1.getTodosLength();
-    console.log("Length: ", getLength);
     expect(Number(getLength)).to.equal(3);
+  });
+
+  it("deleted the task in the todo list...and get the update length of the Todo list", async function () {
+    await data1.deleteToDo(1);
+    expect(Number(await data1.getTodosLength())).to.equal(2);
   });
 });
