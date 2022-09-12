@@ -10,7 +10,7 @@ describe("Counter contract", async function () {
     await counter.deployed();
     data = counter;
   });
-  it("Deployment should assign the specified value to the count variable", async function () {
+  it("Deployment should assign the 10 to the count variable", async function () {
     const [count] = await ethers.getSigners();
 
     console.log(`Signer Object ${count}`);
@@ -18,17 +18,17 @@ describe("Counter contract", async function () {
     expect(await data.getCounter()).to.equal(await data.count());
   });
 
-  it("should return the incremented count value", async function () {
+  it("should return the incremented count value will be 16", async function () {
     await data.increment(6);
     expect(await data.getCounter()).to.equal(16);
   });
 
   it("should return decremented, multiplied and divided count value", async function () {
     await data.decrement(6);
-    expect().to.equal(10);
-    // await data.divide(2);
-    // expect(await data.getCounter()).to.equal(5);
-    // await data.multiply(4);
-    // expect(await data.getCounter()).to.equal(20);
+    expect(Number(await data.getCounter())).to.equal(4);
+    await data.divide(2);
+    expect(await data.getCounter()).to.equal(2);
+    await data.multiply(4);
+    expect(await data.getCounter()).to.equal(8);
   });
 });
