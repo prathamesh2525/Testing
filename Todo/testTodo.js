@@ -1,7 +1,7 @@
 const { expect } = require("chai");
 
 describe("todo", function () {
-  let data;
+  let data, data1;
 
   beforeEach(async () => {
     const Todo = await ethers.getContractFactory("Todo");
@@ -19,11 +19,12 @@ describe("todo", function () {
     console.log("Todos: ", getTodo);
     console.log("Rest Todos: ", rest);
     expect(getTodo).to.equal("Learn JS");
+    data1 = data;
   });
 
   it("Get the length of Todos", async function () {
-    const getLength = await data.getTodosLength();
+    const getLength = await data1.getTodosLength();
     console.log("Length: ", getLength);
-    expect(await getLength.toNumber()).to.equal(3);
+    expect(Number(getLength)).to.equal(3);
   });
 });
